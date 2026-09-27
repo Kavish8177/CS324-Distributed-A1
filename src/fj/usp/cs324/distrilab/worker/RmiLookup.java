@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package fj.usp.cs324.distrilab.worker;
 
-/**
- *
- * @author ictadmin
- */
-public class RmiLookup {
-    
+import fj.usp.cs324.distrilab.common.WorkerInfo;
+import fj.usp.cs324.distrilab.remote.WorkerService;
+import java.rmi.registry.LocateRegistry;
+
+public final class RmiLookup {
+    private RmiLookup() { }
+
+    public static WorkerService worker(WorkerInfo info) throws Exception {
+        return (WorkerService) LocateRegistry.getRegistry(info.host(), info.registryPort())
+                .lookup(info.bindingName());
+    }
 }
