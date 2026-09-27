@@ -1,13 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package fj.usp.cs324.distrilab.remote;
 
-/**
- *
- * @author ictadmin
- */
-public class BootstrapService {
-    
+import fj.usp.cs324.distrilab.common.WorkerInfo;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+import java.util.List;
+
+public interface BootstrapService extends Remote {
+    WorkerInfo registerWorker(WorkerInfo worker) throws RemoteException;
+    void updateWorker(WorkerInfo worker) throws RemoteException;
+    void unregisterWorker(int workerId) throws RemoteException;
+    List<WorkerInfo> getActiveWorkers() throws RemoteException;
 }
